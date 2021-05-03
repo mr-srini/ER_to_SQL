@@ -12,7 +12,7 @@ from dictsupport import DictSupport
 #python er2sql.py --image {image path} --output {output file name} without extention (.sql)
 
 
-
+#DiverClass
 class ErToSQL:
 
 	def __init__(self,output):
@@ -35,6 +35,9 @@ class ErToSQL:
 		    if area < 15000:
 		        x,y,w,h = cv2.boundingRect(c)
 		        mask[y:y+h, x:x+w] = image[y:y+h, x:x+w]
+
+		cv2.imshow("mask",mask)
+		cv2.waitKey()
 		gray = cv2.cvtColor(mask, cv2.COLOR_BGR2GRAY)
   		# Getting words from image 
 		lst = self._getCharacters(gray)
@@ -85,13 +88,9 @@ args = vars(ap.parse_args())
 er = ErToSQL(args['output'])
 er.getSQLFile(args['image'])
 
-
-
-
-
-
-
-
+#python er2sql.py --image images/college_table.png --output collegeTable
+#['id', 'location', 'name', 'College_T']
+#{'tableName': 'College', 'primaryKey': 'id', 'attributes': ['location', 'name']}
 
 
 
